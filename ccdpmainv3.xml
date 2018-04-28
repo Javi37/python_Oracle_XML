@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CCDPDataSet xmlns="picu2"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="picu2 file:/V:/ccdp/trunk/SSIS%20Packages/XSD/ccdpmainv1/ccdpmainv1.xsd">
+    <Version>1.1</Version>
+    <SiteInfo>
+        <SiteAcronym>SiteAcrony</SiteAcronym>
+    </SiteInfo>
+    <AdmissionRecords>
+        <AdmissionRecord>
+            <Identifications>
+                <MRN isEncrypted="false">12345</MRN>
+                <VisitID isEncrypted="false">205010</VisitID>
+            </Identifications>
+            <Demographics>
+                <BirthDate>2014-09-04</BirthDate>
+                <Sex SexID="F">Female</Sex>
+                <Race RaceID="1">Amer Ind</Race>
+                <Ethnicity EthnicityID="1">Hisp</Ethnicity>
+            </Demographics>
+            <HospitalAdmissionInfo>
+                <HospitalAdmitDateTime>
+                    <Date>2015-01-12</Date>
+                    <Time>01:01:01.001</Time>
+                </HospitalAdmitDateTime>
+                <HospitalDischargeDateTime>
+                    <Date>2015-01-15</Date>
+                    <Time>01:01:01.001</Time>
+                </HospitalDischargeDateTime>
+                <AdmissionType AdmissionTypeID="1">routine</AdmissionType>
+                <PrimaryPayer PrimaryPayerTypeID="1">Blue Cross Blue Shield</PrimaryPayer>
+                <HospitalDischargeDisposition DischargeDispositionTypeID="1">discharged home</HospitalDischargeDisposition>
+            </HospitalAdmissionInfo>
+            <DiagnosisCodeGroup>
+                <DxCodeICD9>257.2</DxCodeICD9>
+                <DxCodeICD9>276.2</DxCodeICD9>
+                <DxCodeICD9>286.9</DxCodeICD9>
+                <DxCodeICD9>518.81</DxCodeICD9>
+                <DxCodeICD9>577.0</DxCodeICD9>
+                <DxCodeICD9>729.73</DxCodeICD9>
+                <DxCodeICD9>079.3</DxCodeICD9>
+                <DxCodeICD9>311</DxCodeICD9>
+            </DiagnosisCodeGroup>
+            <ProcedureCodeGroup>
+                <ProcCodeICD9>03.09</ProcCodeICD9>
+                <ProcCodeICD9>03.31</ProcCodeICD9>
+                <ProcCodeICD9>99.25</ProcCodeICD9>
+                <ProcCodeICD9>03.92</ProcCodeICD9>
+                <ProcCodeICD9>88.91</ProcCodeICD9>
+            </ProcedureCodeGroup>
+            <PicuDateTimeGroup>
+                <PicuInfo>
+                    <PicuDateTime>
+                        <PicuAdminDateTime>
+                            <Date>2015-01-13</Date>
+                            <Time>11:40:00</Time>
+                        </PicuAdminDateTime>
+                        <PicuDischargeDateTime>
+                            <Date>2015-01-14</Date>
+                            <Time>18:35:00</Time>
+                        </PicuDischargeDateTime>
+                    </PicuDateTime>
+                </PicuInfo>
+            </PicuDateTimeGroup>
+            <LabGroup>
+                <Lab>
+                    <TestCode>56789</TestCode>
+                    <TestName>MAGNESIUM</TestName>
+                    <LabOrderDateTime>
+                        <Date>2015-05-04</Date>
+                    </LabOrderDateTime>
+                    <Specimen>
+                    </Specimen>
+                    <Comment>New Lab</Comment>
+                    <Results>
+                        <Result>
+                            <ResultDateTime>
+                                <Date>2015-01-13</Date>
+                                <Time>01:01:01.001</Time>
+                            </ResultDateTime>
+                            <ResultName>MAGNESIUM</ResultName>
+                            <ResultValue>2.1</ResultValue>
+                        </Result>
+                        <Result>
+                            <ResultDateTime>
+                                <Date>2015-01-13</Date>
+                                <Time>01:01:01.001</Time>
+                            </ResultDateTime>
+                            <ResultName>MAGNESIUM</ResultName> 
+                            <ResultValue>1.6</ResultValue>
+                        </Result>
+                    </Results>
+                </Lab>
+                <Lab>
+                    <TestCode>A2050</TestCode>
+                    <TestName>CBC WITH DIFF</TestName>
+                    <LabOrderDateTime>
+                        <Date>2015-01-14</Date>
+                    </LabOrderDateTime>
+                    <Specimen>
+                    </Specimen>
+                    <Results>
+                        <Result>
+                            <ResultDateTime>
+                                <Date>2015-01-14</Date>
+                                <Time>01:01:01.001</Time>
+                            </ResultDateTime>
+                            <ResultName>Hematocrit</ResultName>                           
+                            <ResultValue>40.3</ResultValue>
+                        </Result>
+                        <Result>
+                            <ResultDateTime>
+                                <Date>2015-01-14</Date>
+                                <Time>01:01:01.001</Time>
+                            </ResultDateTime>
+                            <ResultName>% Lymphocytes</ResultName>
+                            <ResultValue>11</ResultValue>
+                        </Result>
+                    </Results>
+                </Lab>
+            </LabGroup>
+        </AdmissionRecord>
+        <AdmissionRecord>
+            <Identifications>
+                <MRN isEncrypted="false">56789</MRN>
+                <VisitID isEncrypted="false">50105</VisitID>
+            </Identifications>
+            <Demographics>
+                <BirthDate>2015-05-03</BirthDate>
+                <Sex SexID="F">Male</Sex>
+                <Race RaceID="1">Asian</Race>
+                <Ethnicity EthnicityID="1">Unknown/Declined</Ethnicity>
+            </Demographics>
+            <HospitalAdmissionInfo>
+                <HospitalAdmitDateTime>
+                    <Date>2015-05-04</Date>
+                    <Time>01:01:01.001</Time>
+                </HospitalAdmitDateTime>
+                <HospitalDischargeDateTime>
+                    <Date>2015-05-10</Date>
+                    <Time>01:01:01.001</Time>
+                </HospitalDischargeDateTime>
+                <AdmissionType AdmissionTypeID="1">Emergent</AdmissionType>
+                <PrimaryPayer PrimaryPayerTypeID="1">ALAMEDA</PrimaryPayer>
+                <HospitalDischargeDisposition DischargeDispositionTypeID="1">Hospice Home</HospitalDischargeDisposition>
+            </HospitalAdmissionInfo>
+            <DiagnosisCodeGroup>
+                <DxCodeICD9>V44.1</DxCodeICD9>
+                <DxCodeICD10>I10</DxCodeICD10>
+            </DiagnosisCodeGroup>
+            <ProcedureCodeGroup>
+                <ProcCodeCPT>92585</ProcCodeCPT>
+                <ProcCodeCPT>00000</ProcCodeCPT>
+                <ProcCodeICD9>99.04</ProcCodeICD9>
+            </ProcedureCodeGroup>
+            <PicuDateTimeGroup>
+                <PicuInfo>
+                    <PicuDateTime>
+                        <PicuAdminDateTime>
+                            <Date>2015-05-05</Date>
+                            <Time>11:40:00</Time>
+                        </PicuAdminDateTime>
+                        <PicuDischargeDateTime>
+                            <Date>2015-05-08</Date>
+                        </PicuDischargeDateTime>
+                    </PicuDateTime>
+                </PicuInfo>
+                <PicuInfo>
+                    <PicuDateTime>
+                        <PicuAdminDateTime>
+                            <Date>2015-05-09</Date>
+                            <Time>11:40:00</Time>
+                        </PicuAdminDateTime>
+                        <PicuDischargeDateTime>
+                            <Date>2015-05-09</Date>
+                            <Time>15:03:00</Time>
+                        </PicuDischargeDateTime>
+                    </PicuDateTime>
+                </PicuInfo>
+            </PicuDateTimeGroup>
+            <LabGroup>
+                <Lab>
+                    <TestCode>B5577</TestCode>
+                    <TestName>RENAL FUNCTION PANEL</TestName>
+                    <LabOrderDateTime>
+                        <Date>2015-05-04</Date>
+                    </LabOrderDateTime>
+                    <Specimen>
+                        <CollectionDateTime>
+                            <Date>2015-05-09</Date>
+                            <Time>21:50:00</Time>
+                        </CollectionDateTime>
+                        <SpecimenSource>
+                            <BodySiteCode>32</BodySiteCode>
+                            <BodySiteName>Lab</BodySiteName>
+                        </SpecimenSource>                       
+                    </Specimen>
+                    <Results>
+                        <Result>
+                            <ResultDateTime>
+                                <Date>2015-05-09</Date>
+                                <Time>01:01:01.001</Time>
+                            </ResultDateTime>
+                            <ResultName>BUN</ResultName>
+                            <ResultValue>25</ResultValue>
+                            <ResultUnit>MG/DL</ResultUnit>
+                            <Reference>
+                                <Range>1-13</Range>
+                            </Reference>   
+                        </Result>
+                        <Result>
+                            <ResultDateTime>
+                                <Date>2015-05-09</Date>
+                                <Time>01:01:01.001</Time>
+                            </ResultDateTime>
+                            <ResultName>Chloride</ResultName>
+                            <ResultValue>108</ResultValue>
+                            <ResultUnit>mmol/L</ResultUnit>
+                            <Reference>
+                                <Range>96-110</Range>
+                            </Reference>                           
+                        </Result>
+                    </Results>
+                </Lab>
+                <Lab>
+                    <TestCode>ZZ552</TestCode>
+                    <TestName>TRIGLYCERIDES</TestName>
+                    <LabOrderDateTime>
+                        <Date>2015-05-04</Date>
+                    </LabOrderDateTime>
+                    <Results>
+                        <Result>
+                            <ResultDateTime>
+                                <Date>2015-05-09</Date>
+                                <Time>01:01:01.001</Time>
+                            </ResultDateTime>
+                            <ResultName>Triglycerides</ResultName>
+                            <ResultValue>93</ResultValue>
+                            <ResultUnit>mg/dL</ResultUnit>                         
+                        </Result>
+                    </Results>
+                </Lab>
+            </LabGroup>
+        </AdmissionRecord>
+    </AdmissionRecords>
+</CCDPDataSet>

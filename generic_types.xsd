@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="picu2" targetNamespace="picu2"
+    elementFormDefault="qualified">
+
+    <xs:complexType name="DateTime">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="Date" nillable="true" type="xs:date" maxOccurs="1"/>
+            <xs:element name="Time" nillable="true" type="xs:time" maxOccurs="1" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="DateOptionalTime">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="Date" nillable="true" type="xs:date" maxOccurs="1"/>
+            <xs:element name="Time" nillable="true" type="xs:time" maxOccurs="1" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="maxstring">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="4000"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="name255">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="255"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="name255required">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="255"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="code255">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="255"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="LOINC">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]*[\-][0-9]"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:simpleType name="localvalue255">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="255"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="localvalue10">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="10"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

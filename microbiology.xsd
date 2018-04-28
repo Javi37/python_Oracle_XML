@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="picu2" targetNamespace="picu2"
+    elementFormDefault="qualified">
+    <xs:include schemaLocation="generic_types.xsd"/>
+    <xs:element name="Microbiology" nillable="false">
+        <xs:annotation>
+            <xs:documentation>Description: Section header containing elements detailing each microbiology test.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="BatteryCode" maxOccurs="1" minOccurs="0" nillable="false">
+                    <xs:annotation>
+                        <xs:documentation>Description: The battery/panel code of the lab.</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="code255"> </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="TestCode" maxOccurs="1" minOccurs="1" nillable="false">
+                    <xs:annotation>
+                        <xs:documentation>Description: Code of the test if not part of a panel; code of the individual test if part of a panel.</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="code255"> </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="TestName" maxOccurs="1" minOccurs="1" nillable="false">
+                    <xs:annotation>
+                        <xs:documentation>Description: Name of the lab test if not part of a panel; name of individual lab test if part of a panel.</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="name255"> </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="LOINC" maxOccurs="1" minOccurs="0" nillable="false">
+                    <xs:annotation>
+                        <xs:documentation>Description: LOINC code associated with the test.</xs:documentation>
+                        <xs:documentation>Note: Quality assurance is not being performed on this element because of low to no usage.  If you use this element please contact the DCC.</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="LOINC"/>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Specimen" maxOccurs="1" minOccurs="0" nillable="false">
+                    <xs:annotation>
+                        <xs:documentation>Description: Section header containing elements detailing each body substance or source from which the sample for testing is obtained, e.g. for a test named ‘glucose’, the specimen could be urine/serum/blood, etc. </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="CollectionDateTime" type="DateTime" maxOccurs="1"
+                                minOccurs="0" nillable="false">
+                                <xs:annotation>
+                                    <xs:documentation>Description: Date/Time of collection from the patient.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="SpecimenCode" maxOccurs="1" minOccurs="0"
+                                nillable="false">
+                                <xs:annotation>
+                                    <xs:documentation>Description: Local speciman code.</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="code255"> </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="SpecimenName" maxOccurs="1" minOccurs="0"
+                                nillable="false">
+                                <xs:annotation>
+                                    <xs:documentation>Description: Name of the specimen for this lab.</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="name255"> </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="SpecimenSource" maxOccurs="1" minOccurs="0"
+                                nillable="false">
+                                <xs:annotation>
+                                    <xs:documentation>Description: Section header containing elements detailing the specimen body site.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="BodySiteCode" maxOccurs="1" minOccurs="0"
+                                            nillable="false">
+                                            <xs:annotation>
+                                                <xs:documentation>Description: Local code used to indicate body site where specimen was collected.</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:maxLength value="80"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="BodySiteName" maxOccurs="1" minOccurs="0"
+                                            nillable="false">
+                                            <xs:annotation>
+                                                <xs:documentation>Description: Name of body site where specimen was collected.</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:maxLength value="255"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="LabOrderDateTime" type="DateTime" maxOccurs="1" minOccurs="1"
+                    nillable="false">
+                    <xs:annotation>
+                        <xs:documentation>Description: Date/Time the lab was ordered.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Comment" maxOccurs="1" minOccurs="0" nillable="false">
+                    <xs:annotation>
+                        <xs:documentation>Description: Additional comments for the lab.</xs:documentation>
+                        <xs:documentation>Note: Quality assurance is not being performed on this element because of low to no usage.  If you use this element please contact the DCC.</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string"> </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element maxOccurs="1" minOccurs="0" name="Cultures" nillable="false">
+                    <xs:annotation>
+                        <xs:documentation>Description: Section header containing elements detailing  microcultures.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" name="Culture" minOccurs="0"
+                                nillable="false">
+                                <xs:annotation>
+                                    <xs:documentation>Description: Section header containing elements detailing each microcultures for this specimen.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:all minOccurs="1">
+                                        <xs:element name="CultureCode" maxOccurs="1" minOccurs="0"
+                                            nillable="false">
+                                            <xs:annotation>
+                                                <xs:documentation>Description: Local lab culture code.</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="code255"> </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="CultureName" maxOccurs="1" minOccurs="0"
+                                            nillable="false">
+                                            <xs:annotation>
+                                                <xs:documentation>Description: Culture name.</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="name255"> </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="CultureDescription" maxOccurs="1"
+                                            minOccurs="0" nillable="false">
+                                            <xs:annotation>
+                                                <xs:documentation>Description: Culture description.
+</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="maxstring"> </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="CultureResult" maxOccurs="1" minOccurs="0"
+                                            nillable="false">
+                                            <xs:annotation>
+                                                <xs:documentation>Description: Culture result.</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string"> </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="CultureNormalcy" maxOccurs="1"
+                                            minOccurs="0" nillable="false">
+                                            <xs:annotation>
+                                                <xs:documentation>Description: Culture normalcy, e.g. positive, negative, or abnormal.</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:maxLength value="100"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="CultureComments" maxOccurs="1"
+                                            minOccurs="0" nillable="false">
+                                            <xs:annotation>
+                                                <xs:documentation>Description: Any additional comments relating to this culture.</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="maxstring"> </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element maxOccurs="1" minOccurs="0" name="Organisms"
+                                            nillable="false">
+                                            <xs:annotation>
+                                                <xs:documentation>Description: Section header containing elements detailing the culture organisms.</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded" minOccurs="0"
+                                                  name="Organism" nillable="false">
+                                                  <xs:annotation>
+                                                  <xs:documentation>Description: Section header contining elements detailing each each microorganism on this culture.</xs:documentation>
+                                                  </xs:annotation>
+                                                  <xs:complexType>
+                                                  <xs:all>
+                                                  <xs:element name="OrganismName" maxOccurs="1"
+                                                  minOccurs="0" nillable="false">
+                                                  <xs:annotation>
+                                                  <xs:documentation>Description: Organism name.</xs:documentation>
+                                                  </xs:annotation>
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="name255"> </xs:restriction>
+                                                  </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="OrganismCode" maxOccurs="1"
+                                                  minOccurs="0" nillable="false">
+                                                  <xs:annotation>
+                                                  <xs:documentation>Description: Local organism code.</xs:documentation>
+                                                  </xs:annotation>
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="code255"> </xs:restriction>
+                                                  </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="OrganismComments" maxOccurs="1"
+                                                  minOccurs="0" nillable="false">
+                                                  <xs:annotation>
+                                                  <xs:documentation>Description: Additional comments for the organism.</xs:documentation>
+                                                  <xs:documentation>Note: Quality assurance is not being performed on this element because of low to no usage.  If you use this element please contact the DCC.</xs:documentation>
+                                                  </xs:annotation>
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="xs:string">
+                                                  </xs:restriction>
+                                                  </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element maxOccurs="1" minOccurs="0"
+                                                  name="Susceptibilities" nillable="false">
+                                                  <xs:annotation>
+                                                  <xs:documentation>Description: Section header containing element detailing organism susceptibility.</xs:documentation>
+                                                  </xs:annotation>
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded"
+                                                  name="Susceptibility" minOccurs="1"
+                                                  nillable="false">
+                                                  <xs:annotation>
+                                                  <xs:documentation>Description: Section header containing elements detailing each organism susceptibility to an antibiotic.</xs:documentation>
+                                                  </xs:annotation>
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element name="SusReportDateTime"
+                                                  type="DateTime" maxOccurs="1" minOccurs="0"
+                                                  nillable="false">
+                                                  <xs:annotation>
+                                                  <xs:documentation>Description: Date/Time susceptibility test was reported.</xs:documentation>
+                                                  </xs:annotation>
+                                                  </xs:element>
+                                                  <xs:element name="SusTestLocalCode" maxOccurs="1"
+                                                  minOccurs="0" nillable="false">
+                                                  <xs:annotation>
+                                                  <xs:documentation>Description: Local susceptibility test code.</xs:documentation>
+                                                  </xs:annotation>
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="code255"/>
+                                                  </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="SusTestInterpretation"
+                                                  maxOccurs="1" minOccurs="0" nillable="false">
+                                                  <xs:annotation>
+                                                  <xs:documentation>Description: Susceptibility test interpretation.</xs:documentation>
+                                                  </xs:annotation>
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="maxstring"/>
+                                                  </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="SusTestValue" maxOccurs="1"
+                                                  minOccurs="0" nillable="false">
+                                                  <xs:annotation>
+                                                  <xs:documentation>Description: Susceptibility test value.</xs:documentation>
+                                                  </xs:annotation>
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="maxstring"/>
+                                                  </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="Antibiotic" maxOccurs="1"
+                                                  minOccurs="0" nillable="false">
+                                                  <xs:annotation>
+                                                  <xs:documentation>Description: Information on antiobotic used in this susceptibility test.</xs:documentation>
+                                                  </xs:annotation>
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element name="AntibioticCode" maxOccurs="1"
+                                                  minOccurs="1" nillable="false">
+                                                  <xs:annotation>
+                                                  <xs:documentation>Description: Local antibiotic code.</xs:documentation>
+                                                  </xs:annotation>
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="code255"/>
+                                                  </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="AntibioticName" maxOccurs="1"
+                                                  minOccurs="1" nillable="false">
+                                                  <xs:annotation>
+                                                  <xs:documentation>Description: Name of antibiotic.</xs:documentation>
+                                                  </xs:annotation>
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="name255"/>
+                                                  </xs:simpleType>
+                                                  </xs:element>
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  <xs:element name="SusComment" maxOccurs="1"
+                                                  minOccurs="0" nillable="false">
+                                                  <xs:annotation>
+                                                  <xs:documentation>Description: Additional comments for the susceptibility test.
+</xs:documentation>
+                                                  <xs:documentation>Note: Quality assurance is not being performed on this element because of low to no usage.  If you use this element please contact the DCC.</xs:documentation>
+                                                  </xs:annotation>
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="xs:string"/>
+                                                  </xs:simpleType>
+                                                  </xs:element>
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  </xs:sequence>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  </xs:all>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

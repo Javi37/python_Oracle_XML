@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 (http://www.altova.com) by Rene Enriquez (University of Utah - IICRc) -->
+<!-- Updated as of 2015-07-01. Verion 1.1.20150701 -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="picu2" targetNamespace="picu2"
+	elementFormDefault="qualified" version="1.0">
+	<xs:include schemaLocation="common_types.xsd"/>
+	<xs:include schemaLocation="labs.xsd"/>
+	<xs:include schemaLocation="microbiology.xsd"/>
+	<xs:element name="CCDPDataSet">
+		<xs:annotation>
+			<xs:documentation>Description: Root element header containing all the PICU Admissions records.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Version" type="xs:string" fixed="1.1" nillable="false"
+					minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>Description: Section header containing elements describing the version of xsd referenced to generate the XML submission.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="SiteInfo" nillable="false" minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>Description: Section header containing elements identifying the facility where the patient received care.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="SiteAcronym" nillable="false" minOccurs="1"
+								maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>Description: The assigned identifier for the facility where the patient received care.</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:minLength value="2"/>
+										<xs:maxLength value="10"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="AdmissionRecords" nillable="false" minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>Description: Section header containing hospital admission record elements.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="AdmissionRecord" nillable="false" minOccurs="1"
+								maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Description: Section header containing elements describing the hospital admission.</xs:documentation>
+									<xs:documentation>Note: A new AdmissionRecord should be created for each hospital admission. One hospital admission record could include one or several PICU admissions. </xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Identifications" nillable="false"
+											minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation>Description: Section header containing the elements used to uniquely identify the hospital admission record.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:all>
+												<xs:element name="MRN" nillable="false"
+												minOccurs="1" maxOccurs="1">
+												<xs:annotation>
+												<xs:documentation>Description: Primary identifier used by the facility to uniquely identify the patient, e.g. medical record number.</xs:documentation>
+
+												<xs:documentation>Note: This identifier should be distinct per patient and should consistently represent the patient across submissions. If the MRN is encrypted, set the attribute of "isEncrypted" to true. </xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+												<xs:simpleContent>
+												<xs:extension base="localvalue255">
+												<xs:attribute name="isEncrypted" type="xs:boolean"
+												default="false"/>
+												</xs:extension>
+												</xs:simpleContent>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="VisitID" nillable="false"
+												minOccurs="1" maxOccurs="1">
+												<xs:annotation>
+												<xs:documentation>Description: Identifier used by the facility to uniquely identify each hospital admission for each patient. (e.g., Encounter Number). If the VisitID is encrypted, set the attribute of "isEncrypted" to true.
+
+															</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+												<xs:simpleContent>
+												<xs:extension base="localvalue255">
+												<xs:attribute name="isEncrypted" type="xs:boolean"
+												default="false"/>
+												</xs:extension>
+												</xs:simpleContent>
+												</xs:complexType>
+												</xs:element>
+												</xs:all>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Demographics" nillable="false"
+											minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation>Description: Section header containing elements detailing the patient's demographics.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:all>
+												<xs:element name="BirthDate" nillable="false"
+												minOccurs="0" maxOccurs="1">
+												<xs:annotation>
+												<xs:documentation>Description: Date of birth of the patient in YYYY-MM-DD format.</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+												<xs:restriction base="xs:date"/>
+												</xs:simpleType>
+												</xs:element>
+												<xs:element name="Sex" nillable="false"
+												minOccurs="1" maxOccurs="1">
+												<xs:annotation>
+												<xs:documentation>Description: Sex of patient.
+
+															</xs:documentation>
+												<xs:documentation>Note: This should be the actual value as recorded in the EHR.</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+												<xs:simpleContent>
+												<xs:extension base="localvalue10">
+												<xs:attribute name="SexID" type="SexID"
+												use="required">
+												<xs:annotation>
+												<xs:documentation>Description: The standardized enumeration value used to identify the sex of the patient.</xs:documentation>
+												</xs:annotation>
+												</xs:attribute>
+												</xs:extension>
+												</xs:simpleContent>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="Race" nillable="false"
+												minOccurs="1" maxOccurs="1">
+												<xs:annotation>
+												<xs:documentation>Description: Race of patient.  </xs:documentation>
+												<xs:documentation>Note: This should be the actual value as recorded in the EHR.</xs:documentation>
+												<xs:documentation>Note: Submit only one code per visit; if the patient has more than one race, use appropriate code indicating "multiple races".</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+												<xs:simpleContent>
+												<xs:extension base="localvalue255">
+												<xs:attribute name="RaceID" type="RaceID"
+												use="required">
+												<xs:annotation>
+												<xs:documentation>Description: The standardized enumeration value used to identify the race of the patient.</xs:documentation>
+												</xs:annotation>
+												</xs:attribute>
+												</xs:extension>
+												</xs:simpleContent>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="Ethnicity" form="qualified"
+												nillable="false" minOccurs="1" maxOccurs="1">
+												<xs:annotation>
+												<xs:documentation>Description: Ethnicity of the patient.</xs:documentation>
+												<xs:documentation>Note: This should be the actual value as recorded in the EHR.</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+												<xs:simpleContent>
+												<xs:extension base="localvalue255">
+												<xs:attribute name="EthnicityID"
+												type="EthnicityID" use="required">
+												<xs:annotation>
+												<xs:documentation>Description: The standardized enumeration value used to identify the ethnicity of the patient.</xs:documentation>
+												</xs:annotation>
+												</xs:attribute>
+												</xs:extension>
+												</xs:simpleContent>
+												</xs:complexType>
+												</xs:element>
+												</xs:all>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="HospitalAdmissionInfo" nillable="false"
+											minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation>Description: Section header containing elements detailing the patient's hospital admission information.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+												<xs:element name="HospitalAdmitDateTime"
+												type="DateOptionalTime" nillable="false"
+												minOccurs="1" maxOccurs="1">
+												<xs:annotation>
+												<xs:documentation>Description: Date/Time when the patient was admitted to the hospital.</xs:documentation>
+												</xs:annotation>
+												</xs:element>
+												<xs:element name="HospitalDischargeDateTime"
+												type="DateOptionalTime" nillable="false"
+												minOccurs="0" maxOccurs="1">
+												<xs:annotation>
+												<xs:documentation>Description: Date/Time when the patient was discharged from the hospital.</xs:documentation>
+												</xs:annotation>
+												</xs:element>
+												<xs:element name="AdmissionType" nillable="false"
+												minOccurs="1" maxOccurs="1">
+												<xs:annotation>
+												<xs:documentation>Description: Hospital Admission Type. </xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+												<xs:simpleContent>
+												<xs:extension base="localvalue255">
+												<xs:annotation>
+												<xs:documentation>Note: This should be the actual value as recorded in the EHR.</xs:documentation>
+												</xs:annotation>
+												<xs:attribute name="AdmissionTypeID"
+												type="AdmissionTypeID" use="required">
+												<xs:annotation>
+												<xs:documentation>Description: The standardized enumeration value of hospital admission type for the patient.</xs:documentation>
+												</xs:annotation>
+												</xs:attribute>
+												</xs:extension>
+												</xs:simpleContent>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="PrimaryPayer" form="qualified"
+												nillable="false" minOccurs="1" maxOccurs="1">
+												<xs:annotation>
+												<xs:documentation>Description: Primary entity expected to be responsible for patient’s bill for this hospital visit.</xs:documentation>
+												<xs:documentation>Note: If there are multiple payer types for a patient at the time of the visit, provide only the primary payer type.</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+												<xs:simpleContent>
+												<xs:extension base="localvalue255">
+												<xs:annotation>
+												<xs:documentation>Description: The local site value of primary payer as recorded in the EHR.</xs:documentation>
+												</xs:annotation>
+												<xs:attribute name="PrimaryPayerTypeID"
+												type="PrimaryPayerTypeID" use="required">
+												<xs:annotation>
+												<xs:documentation>Description: The standardized enumeration value of primary payer.</xs:documentation>
+												</xs:annotation>
+												</xs:attribute>
+												</xs:extension>
+												</xs:simpleContent>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="HospitalDischargeDisposition"
+												nillable="false" minOccurs="1" maxOccurs="1">
+												<xs:annotation>
+												<xs:documentation>Description: The patient's hospital discharge disposition.</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+												<xs:simpleContent>
+												<xs:extension base="localvalue255">
+												<xs:annotation>
+												<xs:documentation>Description: The local site value of hospital discharge disposition as recorded in the EHR.</xs:documentation>
+												</xs:annotation>
+												<xs:attribute name="DischargeDispositionTypeID"
+												type="DischargeDispositionTypeID" use="required">
+												<xs:annotation>
+												<xs:documentation>Description: The standardized enumeration value of hospital discharge disposition.</xs:documentation>
+												</xs:annotation>
+												</xs:attribute>
+												</xs:extension>
+												</xs:simpleContent>
+												</xs:complexType>
+												</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="DiagnosisCodeGroup" nillable="false"
+											minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Description: Section header containing elements detailing the diagnoses established during the hospital visit.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence maxOccurs="unbounded">
+												<xs:element name="DxCodeICD9" type="ICD9DxCode"
+												nillable="false" minOccurs="0"
+												maxOccurs="unbounded">
+												<xs:annotation>
+												<xs:documentation>Description: The ICD-9 code representing the diagnosis established.</xs:documentation>
+												</xs:annotation>
+												</xs:element>
+												<xs:element name="DxCodeICD10" type="ICD10DxCode"
+												nillable="false" minOccurs="0"
+												maxOccurs="unbounded">
+												<xs:annotation>
+												<xs:documentation>Description: The ICD-10 code representing the diagnosis established.</xs:documentation>
+												</xs:annotation>
+												</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="ProcedureCodeGroup" nillable="false"
+											minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Description: Section header containing elements detailing the procedure performed during the patient’s hospital visit.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence maxOccurs="unbounded">
+												<xs:element name="ProcCodeCPT" type="CPTProcCode"
+												minOccurs="0" maxOccurs="unbounded">
+												<xs:annotation>
+												<xs:documentation>Description: The CPT procedure codes used to identify the procedures performed.</xs:documentation>
+												</xs:annotation>
+												</xs:element>
+												<xs:element name="ProcCodeICD9"
+												type="ICD9ProcCode" nillable="false" minOccurs="0"
+												maxOccurs="unbounded">
+												<xs:annotation>
+												<xs:documentation>Description: The ICD-9 procedure codes used to identify the procedures performed.</xs:documentation>
+												</xs:annotation>
+												</xs:element>
+												<xs:element name="ProcCodeICD10"
+												type="ICD10ProcCode" nillable="false"
+												minOccurs="0" maxOccurs="unbounded">
+												<xs:annotation>
+												<xs:documentation>Description: The ICD-10 procedure codes used to identify the procedures performed.</xs:documentation>
+												</xs:annotation>
+												</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="PicuDateTimeGroup" nillable="false"
+											minOccurs="1" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation>Description: Section header containing PICU Admission date/times.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence minOccurs="1" maxOccurs="1">
+												<xs:element name="PicuInfo" nillable="false"
+												maxOccurs="unbounded">
+												<xs:annotation>
+												<xs:documentation>Description: Section header containing elements detailing each PICU admission/discharge date/time.</xs:documentation>
+												<xs:documentation>Note: If PICUDateTime is unavailable, LengthOfPicuStay should be provided.  LengthOfPicuStay should only be provided when PICUDateTime is unavailable.</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+												<xs:choice>
+												<xs:element name="PicuDateTime" nillable="false">
+												<xs:annotation>
+												<xs:documentation>Description: Section header containing elements detailing each PICU admission/discharge date/time.</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+												<xs:sequence>
+												<xs:element name="PicuAdminDateTime"
+												type="DateTime" nillable="false" minOccurs="1"
+												maxOccurs="1">
+												<xs:annotation>
+												<xs:documentation>Description: Section header containing elements detailing the PICU admission date/time.</xs:documentation>
+												</xs:annotation>
+												</xs:element>
+												<xs:element name="PicuDischargeDateTime"
+												type="DateTime" nillable="false" minOccurs="1"
+												maxOccurs="1">
+												<xs:annotation>
+												<xs:documentation>Description: Section header containing elements detailing the PICU discharge date/time.</xs:documentation>
+												</xs:annotation>
+												</xs:element>
+												</xs:sequence>
+												</xs:complexType>
+												</xs:element>
+												<xs:element name="LengthOfPicuStay"
+												nillable="false">
+												<xs:annotation>
+												<xs:documentation>Description: Section header containing elements detailing the PICU admission length of stay (PICU LOS in minutes).</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+												<xs:restriction base="xs:int">
+												<xs:minInclusive value="0"/>
+												<xs:maxInclusive value="2629745"/>
+												</xs:restriction>
+												</xs:simpleType>
+												</xs:element>
+												</xs:choice>
+												</xs:complexType>
+												</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element minOccurs="0" name="Medications" maxOccurs="1"
+											nillable="false">
+											<xs:annotation>
+												<xs:documentation>Description: Section header containing elements detailing the medications ordered and the medications administered event(s) during the ED visit.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+												<xs:element maxOccurs="unbounded" ref="Medication"
+												minOccurs="1"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="LabGroup" nillable="false" minOccurs="0"
+											maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation>Description: Section header containing elements detailing labs ordered during the hospital visit.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+												<xs:element ref="Lab" maxOccurs="unbounded"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element minOccurs="0" name="MicrobiologyLabs"
+											maxOccurs="1" nillable="false">
+											<xs:annotation>
+												<xs:documentation>Descrpition: Section header containing elements detailing microbiology labs.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+												<xs:element maxOccurs="unbounded"
+												ref="Microbiology" minOccurs="1"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Medication" nillable="false">
+		<xs:annotation>
+			<xs:documentation>Description: Section header containing elements detailing each medication ordered during the ED visit and elements detailing each time this order was administered.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="MedCode" maxOccurs="1" minOccurs="1" nillable="false">
+					<xs:annotation>
+						<xs:documentation>Description: Local medication code.</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="MedCode"/>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="MedName" maxOccurs="1" minOccurs="1" nillable="false"
+					type="name255required">
+					<xs:annotation>
+						<xs:documentation>Description: Name of the medication ordered.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:sequence minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Description: Section for the medication order.  A medication order additionally requires a Date/Time.</xs:documentation>
+					</xs:annotation>
+					<xs:element name="MedDateTime" type="DateTime" maxOccurs="1" minOccurs="1"
+						nillable="false">
+						<xs:annotation>
+							<xs:documentation>Description: Date/Time when medication was ordered.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MedDose" maxOccurs="1" minOccurs="0" nillable="false">
+						<xs:annotation>
+							<xs:documentation>Description: Dose of the medication ordered.</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="MedOrdDose"/>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="MedDoseUnits" maxOccurs="1" minOccurs="0" nillable="false">
+						<xs:annotation>
+							<xs:documentation>Description: Units for the medication dose ordered.</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="MedOrdDoseUnits"/>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="MedRoute" maxOccurs="1" minOccurs="0" nillable="false">
+						<xs:annotation>
+							<xs:documentation>Description: Route of administration specified for the medication ordered.</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="MedOrdRoute"/>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="MedSchedule" maxOccurs="1" minOccurs="0" nillable="false">
+						<xs:annotation>
+							<xs:documentation>Description: Frequency and duration of the medication ordered.</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="MedOrdSched"/>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element maxOccurs="1" minOccurs="0" name="MedComponents">
+						<xs:annotation>
+							<xs:documentation>Description: Section header containing a list of medication components in this medication.</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="MedComponent" maxOccurs="unbounded" minOccurs="1"
+									nillable="false">
+									<xs:annotation>
+										<xs:documentation>Description: Section header containing elements detailing each order for each medication during the ED visit.</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:all>
+											<xs:element minOccurs="0" name="MedComponentName"
+												type="name255">
+												<xs:annotation>
+												<xs:documentation>Description: Name of medication component.  
+														
+														Note: If MedicationName/MedCode does not include multiple components, this element should not be populated.</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element minOccurs="0" name="MedComponentCode">
+												<xs:annotation>
+												<xs:documentation>Description: The local code of the medication component ordered during the ED visit.
+														
+														Note: If MedicationName/MedCode does not include multiple components, this element should not be populated.</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+												<xs:restriction base="MedCode"/>
+												</xs:simpleType>
+											</xs:element>
+										</xs:all>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+				<xs:element minOccurs="0" name="MedAdministeredEvents">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element maxOccurs="unbounded" minOccurs="1"
+								name="MedAdministeredEvent">
+								<xs:complexType>
+									<xs:all maxOccurs="1" minOccurs="1">
+										<xs:element name="MedAdministeredEventDateTime"
+											type="DateTime" maxOccurs="1" minOccurs="1"
+											nillable="false">
+											<xs:annotation>
+												<xs:documentation>Description: Date/Time medication was administered.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="MedDose" maxOccurs="1" minOccurs="0"
+											nillable="false">
+											<xs:annotation>
+												<xs:documentation>Description: Dose of the medication administered.</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="MedOrdDose"/>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="MedDoseUnits" maxOccurs="1" minOccurs="0"
+											nillable="false">
+											<xs:annotation>
+												<xs:documentation>Description: Units for the medication dose administered.</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="MedOrdDoseUnits"/>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="MedRoute" maxOccurs="1" minOccurs="0"
+											nillable="false">
+											<xs:annotation>
+												<xs:documentation>Description: Route of administration</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="MedOrdRoute"/>
+											</xs:simpleType>
+										</xs:element>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

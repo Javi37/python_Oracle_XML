@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="picu2" targetNamespace="picu2"
+    elementFormDefault="qualified">
+    <xs:include schemaLocation="generic_types.xsd"/>
+    <xs:element name="Lab" nillable="false">
+        <xs:annotation>
+            <xs:documentation>Description: Section header containing elements detailing each laboratory test obtained for the patient.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="BatteryCode" minOccurs="0" maxOccurs="1" nillable="false">
+                    <xs:annotation>
+                        <xs:documentation>Description: The battery/panel local code of the lab. </xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="code255"> </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="TestCode" maxOccurs="1" minOccurs="1" nillable="false">
+                    <xs:annotation>
+                        <xs:documentation>Description: Code of the test if not part of a panel; code of the individual test if part of a panel.</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="code255"> </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="TestName" maxOccurs="1" minOccurs="1" nillable="false">
+                    <xs:annotation>
+                        <xs:documentation>Description: Name of the lab test if not part of a panel; name of individual lab test if part of a panel.</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="name255"> </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element minOccurs="0" name="LOINC" maxOccurs="1" nillable="false">
+                    <xs:annotation>
+                        <xs:documentation>Description: LOINC code associated with the test.</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="LOINC"> </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="LabOrderDateTime" type="DateOptionalTime" maxOccurs="1"
+                    minOccurs="0" nillable="false">
+                    <xs:annotation>
+                        <xs:documentation>Description: Date/Time the lab was ordered.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Specimen" minOccurs="0" maxOccurs="1" nillable="false">
+                    <xs:annotation>
+                        <xs:documentation>Description: Section header containing elements detailing each body substance or source from which the sample for testing was obtained, e.g. for a test named "glucose" the specimen could be urine/serum/blood, etc. </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="CollectionDateTime" type="DateTime" maxOccurs="1"
+                                minOccurs="0" nillable="false">
+                                <xs:annotation>
+                                    <xs:documentation>Description: Date/Time of collection from the patient.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="SpecimenCode" maxOccurs="1" minOccurs="0"
+                                nillable="false">
+                                <xs:annotation>
+                                    <xs:documentation>Description: Local speciman code.</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="code255"> </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="SpecimenName" maxOccurs="1" minOccurs="0"
+                                nillable="false">
+                                <xs:annotation>
+                                    <xs:documentation>Description: Name of the specimen for this lab.</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="name255"> </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="SpecimenSource" minOccurs="0" nillable="false">
+                                <xs:annotation>
+                                    <xs:documentation>Description: Section header containing elements detailing the specimen body site.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="BodySiteCode" maxOccurs="1" minOccurs="0"
+                                            nillable="false">
+                                            <xs:annotation>
+                                                <xs:documentation>Description: Local code used to indicate body site where specimen was collected.</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="code255"> </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="BodySiteName" maxOccurs="1" minOccurs="0"
+                                            nillable="false">
+                                            <xs:annotation>
+                                                <xs:documentation>Description: Name of body site where specimen was collected.</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="name255"> </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Comment" maxOccurs="1" minOccurs="0" nillable="false">
+                    <xs:annotation>
+                        <xs:documentation>Description: Additional comments for this lab.</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string"> </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Results" maxOccurs="1" minOccurs="0" nillable="false">
+                    <xs:annotation>
+                        <xs:documentation>Description: Section header containing a list of result elements for this lab.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence maxOccurs="1">
+                            <xs:element maxOccurs="unbounded" name="Result" minOccurs="1"
+                                nillable="false">
+                                <xs:annotation>
+                                    <xs:documentation>Description: Section header containing elements detailing each result for this lab.
+                                        
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="ResultDateTime" type="DateTime"
+                                            maxOccurs="1" minOccurs="1" nillable="false">
+                                            <xs:annotation>
+                                                <xs:documentation>Description: Date/Time result was entered.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ResultName" maxOccurs="1" minOccurs="0"
+                                            nillable="false">
+                                            <xs:annotation>
+                                                <xs:documentation>Description: If this lab has components this would the component name; blank otherwise.  </xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="name255"> </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="LOINC" maxOccurs="1" minOccurs="0"
+                                            nillable="false">
+                                            <xs:annotation>
+                                                <xs:documentation>Description: LOINC code identifying the result.</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="LOINC"> </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="ResultDescription" maxOccurs="1"
+                                            minOccurs="0" nillable="false">
+                                            <xs:annotation>
+                                                <xs:documentation>Description: Result description.</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:maxLength value="255"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="ResultValue" maxOccurs="1" minOccurs="1"
+                                            nillable="false">
+                                            <xs:annotation>
+                                                <xs:documentation>Description: Result value.</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string"> </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="ResultUnit" maxOccurs="1" minOccurs="0"
+                                            nillable="false">
+                                            <xs:annotation>
+                                                <xs:documentation>Description: Units of the result value.</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:maxLength value="80"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="Reference" maxOccurs="1" minOccurs="0"
+                                            nillable="false">
+                                            <xs:annotation>
+                                                <xs:documentation>Description: Section header listing elements detailing the local lab reference ranges.</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:all>
+                                                  <xs:element name="Range" maxOccurs="1"
+                                                  minOccurs="0" nillable="false">
+                                                  <xs:annotation>
+                                                  <xs:documentation>Description: The text range value associated with the lab result when specific low and high values are unavailable.</xs:documentation>
+                                                  </xs:annotation>
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="xs:string">
+                                                  <xs:maxLength value="64"/>
+                                                  </xs:restriction>
+                                                  </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="Low" maxOccurs="1" minOccurs="0"
+                                                  nillable="false">
+                                                  <xs:annotation>
+                                                  <xs:documentation>Description: The lower limit for the reference range.</xs:documentation>
+                                                  </xs:annotation>
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="xs:string">
+                                                  <xs:maxLength value="64"/>
+                                                  </xs:restriction>
+                                                  </xs:simpleType>
+                                                  </xs:element>
+                                                  <xs:element name="High" maxOccurs="1"
+                                                  minOccurs="0" nillable="false">
+                                                  <xs:annotation>
+                                                  <xs:documentation>Description: The upper limit for the reference range.</xs:documentation>
+                                                  </xs:annotation>
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="xs:string">
+                                                  <xs:maxLength value="64"/>
+                                                  </xs:restriction>
+                                                  </xs:simpleType>
+                                                  </xs:element>
+                                                </xs:all>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="ResultNotes" maxOccurs="1" minOccurs="0"
+                                            nillable="false">
+                                            <xs:annotation>
+                                                <xs:documentation>Description: Any additional comments on this lab result.</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                  <xs:maxLength value="255"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

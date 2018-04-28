@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!--  Sex  -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+    <xs:simpleType name="SexID">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="F">
+                <xs:annotation>
+                    <xs:documentation>Female</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="M">
+                <xs:annotation>
+                    <xs:documentation>Male</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="U">
+                <xs:annotation>
+                    <xs:documentation>Stated Unknown</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="-1">
+                <xs:annotation>
+                    <xs:documentation>Value Not Mapped</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="-2">
+                <xs:annotation>
+                    <xs:documentation>No Data</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!--  Admission Type  -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <xs:simpleType name="AdmissionTypeID">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="1">
+                <xs:annotation>
+                    <xs:documentation>Scheduled</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="2">
+                <xs:annotation>
+                    <xs:documentation>Emergency</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+			<xs:enumeration value="-1">
+                <xs:annotation>
+                    <xs:documentation>Not Mapped</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="-2">
+                <xs:annotation>
+                    <xs:documentation>No Data</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!--  Primary Payer Type  -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <xs:simpleType name="PrimaryPayerTypeID">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="1">
+                <xs:annotation>
+                    <xs:documentation>Commercial Insurance</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="2">
+                <xs:annotation>
+                    <xs:documentation>Medicaid</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="3">
+                <xs:annotation>
+                    <xs:documentation>Medicare</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="4">
+                <xs:annotation>
+                    <xs:documentation>Other</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="5">
+                <xs:annotation>
+                    <xs:documentation>Other Governmental Insurance</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="6">
+                <xs:annotation>
+                    <xs:documentation>Self Pay</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="7">
+                <xs:annotation>
+                    <xs:documentation>Stated Unknown</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="8">
+                <xs:annotation>
+                    <xs:documentation>Workers Compensation</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="-1">
+                <xs:annotation>
+                    <xs:documentation>Not Mapped</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="-2">
+                <xs:annotation>
+                    <xs:documentation>No Data</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!--  Discharge Disposition Type  -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+    <xs:simpleType name="DischargeDispositionTypeID">
+        <xs:restriction base="xs:string">                       
+            <xs:enumeration value="1">
+                <xs:annotation>
+                    <xs:documentation>Discharged to home</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="2">
+                <xs:annotation>
+                    <xs:documentation>Died in hospital</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="3">
+                <xs:annotation>
+                    <xs:documentation>Transferred to rehabilitation facility</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="4">
+                <xs:annotation>
+                    <xs:documentation>Transferred to long-term care facility</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="5">
+                <xs:annotation>
+                    <xs:documentation>Transferred to another in-patient hospital</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="6">
+                <xs:annotation>
+                    <xs:documentation>Transferred to other location (not otherwise categorized)</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="7">
+                <xs:annotation>
+                    <xs:documentation>Not yet discharged from the hospital</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="8">
+                <xs:annotation>
+                    <xs:documentation>Unknown</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <!--Mike Dean decides to categorize these as 1, Discharged to home (07/01/2015)
+            <xs:enumeration value="9">
+                <xs:annotation>
+                    <xs:documentation>Left without being seen</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="10">
+                <xs:annotation>
+                    <xs:documentation>Left against medical advice</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            -->
+            <xs:enumeration value="-1">
+                <xs:annotation>
+                    <xs:documentation>Not Mapped</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="-2">
+                <xs:annotation>
+                    <xs:documentation>No Data</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="CPTProcCode">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\d{5}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ICD9ProcCode">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\d{2}|\d{2}\.\d{1,2}|\d{3,4}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ICD9DxCode">
+        <xs:restriction base="xs:string">
+            <xs:pattern
+                value="\d{3}|\d{3}\.\d{1,2}|[E]\d{3}|[E]\d{3}\.\d|[V]\d{2}|[V]\d{2}\.\d{1,2}|\d{4,5}|[E]\d{4}|[V]\d{3,4}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ICD9ECode">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[E]\d{3}|[E]\d{3}\.\d|[E]\d{4}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ICD10ProcCode">
+        <xs:restriction base="xs:string">
+            <!--<xs:pattern value="\d{5}[A-Za-z][A-Za-z0-9]"/>-->
+            <xs:pattern value="[A-Za-z0-9]{3,7}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ICD10DxCode">
+        <xs:restriction base="xs:string">
+            <!--<xs:pattern value="[A-Za-z]\d{2}|[A-Za-z]\d{2}\.\d{1}"/>-->
+            <xs:pattern value="[A-Za-z][0-9][0-9AaBb]|[A-Za-z][0-9][0-9AaBb]\.[A-Za-z0-9]{1,4}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!--<xs:simpleType name="ICD10ECode">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[E]\d{3}|[E]\d{3}\.\d"/>
+        </xs:restriction>
+    </xs:simpleType>-->
+    <!-- DRG and ZIP are not include in CCDP release -->
+    <!--
+    <xs:complexType name="DRGtype">
+        <xs:sequence>
+            <xs:element name="DRGvalue" maxOccurs="1" minOccurs="1" nillable="false">
+                <xs:annotation>
+                    <xs:documentation>Description: The Diagnosis-Related group code.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9]{3}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="DRGtype" maxOccurs="1" minOccurs="0" nillable="false">
+                <xs:annotation>
+                    <xs:documentation>Description: The version of Diagnosis-Related group being reported (e.g. MS-DRG, APR-DRG).</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="25"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="Zip">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="10"/>
+            <xs:pattern value="[a-zA-Z0-9\-]*"/>
+            <xs:whiteSpace value="collapse"/>
+        </xs:restriction>
+    </xs:simpleType>
+    -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!--  Race  -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <xs:simpleType name="RaceID">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="1">
+                <xs:annotation>
+                    <xs:documentation>American Indian or Alaska Native </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="2">
+                <xs:annotation>
+                    <xs:documentation>Asian</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="3">
+                <xs:annotation>
+                    <xs:documentation>Black or African American</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="4">
+                <xs:annotation>
+                    <xs:documentation>Native Hawaiian or Other Pacific Islander</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="5">
+                <xs:annotation>
+                    <xs:documentation>White</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="6">
+                <xs:annotation>
+                    <xs:documentation>Multiple Races</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="7">
+                <xs:annotation>
+                    <xs:documentation>Stated Unknown</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="8">
+                <xs:annotation>
+                    <xs:documentation>Other</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="-1">
+                <xs:annotation>
+                    <xs:documentation>Value Not Mapped</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="-2">
+                <xs:annotation>
+                    <xs:documentation>No Data</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!--  Ethnicity  -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <xs:simpleType name="EthnicityID">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="1">
+                <xs:annotation>
+                    <xs:documentation>Hispanic or Latino</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="2">
+                <xs:annotation>
+                    <xs:documentation>Not Hispanic or Latino</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="3">
+                <xs:annotation>
+                    <xs:documentation>Stated Unknown</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="-1">
+                <xs:annotation>
+                    <xs:documentation>Value Not Mapped</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="-2">
+                <xs:annotation>
+                    <xs:documentation>No Data</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- MedCode -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <xs:simpleType name="MedCode">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="50"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- MedOrdDose -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <xs:simpleType name="MedOrdDose">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="255"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- MedOrdDoseUnits -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <xs:simpleType name="MedOrdDoseUnits">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="60"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- MedOrdSched -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <xs:simpleType name="MedOrdSched">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="500"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- MedOrdRoute -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <xs:simpleType name="MedOrdRoute">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="50"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
